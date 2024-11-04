@@ -1,0 +1,21 @@
+<div>
+    <input 
+      class="search" 
+      type="text" 
+      [(value)]="searchText"
+      [(ngModel)]="searchText" 
+      (input)="onChange($event)" 
+      placeholder="Введите для поиска..." 
+    />
+  </div>
+  
+  <div class="grid-container">
+    <div class="grid-header" *ngFor="let title of tableTitle">{{ title }}</div>
+    <ng-container *ngFor="let item of tableData | filterTable:searchText">
+      <div class="grid-item" *ngFor="let itemValue of itemValues">
+        {{ item?.[itemValue] }} 
+        @if (itemValue === 'object') {<span (click)="openModal(item)" class="modal-button">⤯</span>}
+      </div>
+    </ng-container>
+    <app-modal [modalData]="modalData" *ngIf="isModalOpen && modalData" (closeModal)="closeModal()"></app-modal>
+</div>

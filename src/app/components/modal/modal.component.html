@@ -1,0 +1,9 @@
+<div class="modal-backdrop" (click)="close()"></div>
+<div class="modal-content">
+    <ng-container *ngFor="let title of modalTitle; let i = index">
+      <div>
+        <span class="title">{{ title }}</span>: {{ modalData[itemValues[i]] ?? '-' }}
+      </div>
+    </ng-container>
+  <button class="close-button" (click)="close()">Закрыть</button>
+</div>
